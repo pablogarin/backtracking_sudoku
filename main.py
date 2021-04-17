@@ -1,5 +1,4 @@
 import sys
-import numpy as np
 from sudoku_solver.solver.backtracking_solver import BacktrackingSolver
 from sudoku_solver.sudoku_ui import SudokuUI
 from sudoku_solver.sudoku_generator import generate_sudoku
