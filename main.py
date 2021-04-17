@@ -1,5 +1,8 @@
 import sys
 import numpy as np
+from sudoku_solver.solver.backtracking_solver import BacktrackingSolver
+from sudoku_solver.sudoku_ui import SudokuUI
+from sudoku_solver.sudoku_generator import generate_sudoku
 
 
 grid = [
@@ -14,48 +17,10 @@ grid = [
   [0,0,0,0,8,0,0,7,9]
 ]
 
-
-def is_possible(row, col, num):
-  global grid
-  # Check row and columns
-  for i in range(9):
-    if grid[row][i] == num:
-      return False
-    if grid[i][col] == num:
-      return False
-  # Check 3x3 group
-  group_hor_pos = col // 3
-  group_ver_pos = row // 3
-  for i in range(3):
-    check_row = i + group_ver_pos*3
-    for j in range(3):
-      check_col = j + group_hor_pos*3
-      if grid[check_row][check_col] == num:
-        return False
-  return True
-
-
-def solve():
-  global grid
-  for row in range(9):
-    for col in range(9):
-      if grid[row][col] == 0:
-        for num in range(1,10):
-          if is_possible(row, col, num):
-            grid[row][col] = num
-            is_complete = solve()
-            if is_complete:
-              return True
-            grid[row][col] = 0
-        # solution not found
-        return False
-  return True
+def main():
+  solver = BacktrackingSolver()
+  ui = SudokuUI(solver)
 
 
 if __name__ == "__main__":
-  solution = solve()
-  if solution:
-    print(np.matrix(grid))
-    sys.exit(0)
-  print("Unsolvable!")
-  sys.exit(1)
+  main()
