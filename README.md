@@ -2,7 +2,7 @@
 
 This is a showcase project.
 
-To play sudoku just load the app.
+To play sudoku run the file `main.py`.
 
 Click on any free cell to fill it with the number you think should go.
 
